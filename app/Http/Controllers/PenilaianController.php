@@ -72,10 +72,33 @@ class PenilaianController extends Controller
         return view('penilaian.winners', compact('teams'));
     }
 
-    public function scorecard()
-    {
-        $juris = Juri::all();
-        $teams = Team::all();
-        return view('penilaian.scorecard', compact('juris', 'teams'));
+    // public function scorecard()
+    // {
+    //     $juris = Juri::all();
+    //     $teams = Team::all();
+    //     return view('penilaian.scorecard', compact('juris', 'teams'));
+    // }
+
+    public function scorecard(Request $request)
+{
+    $juris = Juri::all();
+    $teams = Team::all();
+
+    $query = Penilaian::query();
+
+    // Filter berdasarkan juri_id jika dipilih
+    if ($request->has('juri_id') && $request->juri_id != '') {
+        $query->where('juri_id', $request->juri_id);
     }
+
+    // Filter berdasarkan team_id jika dipilih
+    if ($request->has('team_id') && $request->team_id != '') {
+        $query->where('team_id', $request->team_id);
+    }
+
+    $penilaians = $query->with('juri', 'team', 'kriteria')->get();
+
+    return view('penilaian.scorecard', compact('juris', 'teams', 'penilaians'));
+}
+
 }
