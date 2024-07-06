@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Scorecard</h1>
+@extends('layouts.app')
+
+@section('content')
+<h1>Scorecard</h1>
 
 <form action="{{ route('penilaian.scorecard') }}" method="GET">
     <div>
@@ -31,7 +25,7 @@
     <button type="submit">Filter</button>
 </form>
 
-<table>
+<table class="table mt-4">
     <thead>
         <tr>
             <th>Juri</th>
@@ -46,12 +40,9 @@
             <td>{{ $penilaian->juri->nama }}</td>
             <td>{{ $penilaian->team->name }}</td>
             <td>{{ $penilaian->kriteria->name }}</td>
-            <td>{{ $penilaian->score1 }}</td>
-            <!-- Sesuaikan dengan field-score lainnya jika ada -->
+            <td>{{ $penilaian->score }}</td>
         </tr>
         @endforeach
     </tbody>
 </table>
-
-</body>
-</html>
+@endsection

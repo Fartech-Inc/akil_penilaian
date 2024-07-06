@@ -13,14 +13,10 @@ return new class extends Migration
     {
         Schema::create('penilaians', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('juri_id')->constrained('juris');
-            $table->foreignId('team_id')->constrained('teams');
-            $table->foreignId('kriteria_id')->constrained('kriterias');
-            $table->integer('score1');
-            $table->integer('score2');
-            $table->integer('score3');
-            $table->integer('score4');
-            $table->integer('score5');
+            $table->foreignId('juri_id')->constrained('juris')->onDelete('cascade');
+            $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
+            $table->foreignId('kriteria_id')->constrained('kriterias')->onDelete('cascade');
+            $table->integer('score')->default(0);
             $table->timestamps();
         });
     }

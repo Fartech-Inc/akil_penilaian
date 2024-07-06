@@ -1,112 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    {{-- <h1>Scorecard</h1>
-    <form action="{{ route('penilaian.scorecard') }}" method="GET">
-        <label for="juri_id">Juri:</label>
-        <select name="juri_id" id="juri_id">
-            @foreach ($juris as $juri)
-                <option value="{{ $juri->id }}">{{ $juri->nama }}</option>
-            @endforeach
-        </select>
+@extends('layouts.app')
 
-        <label for="team_id">Kelompok:</label>
-        <select name="team_id" id="team_id">
-            @foreach ($teams as $team)
-                <option value="{{ $team->id }}">{{ $team->name }}</option>
-            @endforeach
-        </select>
-
-        <button type="submit">Filter</button>
+@section('content')
+<section class="title">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-5">Scorecard</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<div class="container">
+    <form action="{{ route('penilaian.scorecard') }}" method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="juri_id" class="form-label">Pilih Juri:</label>
+                <select name="juri_id" id="juri_id" class="form-select">
+                    <option value="">Semua Juri</option>
+                    @foreach ($juris as $juri)
+                        <option value="{{ $juri->id }}" {{ request('juri_id') == $juri->id ? 'selected' : '' }}>{{ $juri->nama }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="team_id" class="form-label">Pilih Tim:</label>
+                <select name="team_id" id="team_id" class="form-select">
+                    <option value="">Semua Tim</option>
+                    @foreach ($teams as $team)
+                        <option value="{{ $team->id }}" {{ request('team_id') == $team->id ? 'selected' : '' }}>{{ $team->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <button type="submit" class="btn btn-primary w-100">Filter</button>
+            </div>
+        </div>
     </form>
 
-    @if (isset($penilaians))
-        <ul>
-            @foreach ($penilaians as $penilaian)
-                <li>
-                    Juri: {{ $penilaian->juri->nama }}, Kelompok: {{ $penilaian->team->name }},
-                    Score1: {{ $penilaian->score1 }},
-                    Score2: {{ $penilaian->score2 }},
-                    Score3: {{ $penilaian->score3 }},
-                    Score4: {{ $penilaian->score4 }},
-                    Score5: {{ $penilaian->score5 }}
-                </li>
-            @endforeach
-        </ul>
-    @endif --}}
-
-    {{-- <form action="{{ route('penilaian.scorecard') }}" method="GET">
-        <div>
-            <label for="juri_id">Pilih Juri:</label>
-            <select name="juri_id" id="juri_id">
-                <option value="">Semua Juri</option>
-                @foreach ($juris as $juri)
-                    <option value="{{ $juri->id }}" {{ request('juri_id') == $juri->id ? 'selected' : '' }}>{{ $juri->nama }}</option>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Juri</th>
+                    <th>Tim</th>
+                    <th>Kriteria</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($penilaians as $penilaian)
+                    <tr>
+                        <td>{{ $penilaian->juri->nama }}</td>
+                        <td>{{ $penilaian->team->name }}</td>
+                        <td>{{ $penilaian->kriteria->name }}</td>
+                        <td>{{ $penilaian->score }}</td>
+                    </tr>
                 @endforeach
-            </select>
-        </div>
-        <div>
-            <label for="team_id">Pilih Tim:</label>
-            <select name="team_id" id="team_id">
-                <option value="">Semua Tim</option>
-                @foreach ($teams as $team)
-                    <option value="{{ $team->id }}" {{ request('team_id') == $team->id ? 'selected' : '' }}>{{ $team->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <button type="submit">Filter</button>
-    </form> --}}
-
-
-
-    <form action="{{ route('penilaian.scorecard') }}" method="GET">
-        <div>
-            <label for="juri_id">Pilih Juri:</label>
-            <select name="juri_id" id="juri_id">
-                <option value="">Semua Juri</option>
-                @foreach ($juris as $juri)
-                    <option value="{{ $juri->id }}" {{ request('juri_id') == $juri->id ? 'selected' : '' }}>{{ $juri->nama }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div>
-            <label for="team_id">Pilih Tim:</label>
-            <select name="team_id" id="team_id">
-                <option value="">Semua Tim</option>
-                @foreach ($teams as $team)
-                    <option value="{{ $team->id }}" {{ request('team_id') == $team->id ? 'selected' : '' }}>{{ $team->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <button type="submit">Filter</button>
-    </form>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Juri</th>
-                <th>Tim</th>
-                <th>Kriteria</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($penilaians as $penilaian)
-            <tr>
-                <td>{{ $penilaian->juri->nama }}</td>
-                <td>{{ $penilaian->team->name }}</td>
-                <td>{{ $penilaian->kriteria->name }}</td>
-                <td>{{ $penilaian->score1 }}</td>
-                <!-- Sesuaikan dengan field-score lainnya jika ada -->
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</body>
-</html>
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection

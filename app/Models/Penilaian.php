@@ -13,11 +13,7 @@ class Penilaian extends Model
         'juri_id',
         'team_id',
         'kriteria_id',
-        'score1',
-        'score2',
-        'score3',
-        'score4',
-        'score5',
+        'score',
     ];
 
     public function juri()

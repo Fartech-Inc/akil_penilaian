@@ -11,7 +11,7 @@
     </div>
 </section>
 <br>
-<form action="{{ route('penilaian.store', [$team->id, $juri->id]) }}" method="POST">
+<form action="{{ route('penilaian.store', [$team->id, $juri->id]) }}" method="POST" id="penilaianForm">
     @csrf
     <div class="container">
         <div class="row">
@@ -26,7 +26,7 @@
                         @for ($i = 1; $i <= 4; $i++)
                         <li class="list-group-item">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="score[{{ $kriteria->id }}]" id="score{{ $kriteria->id }}_{{ $i }}" value="{{ $i }}" />
+                                <input class="form-check-input score-radio" type="radio" name="scores[{{ $kriteria->id }}]" id="score{{ $kriteria->id }}_{{ $i }}" value="{{ $i }}" />
                                 <label class="form-check-label" for="score{{ $kriteria->id }}_{{ $i }}">
                                     {{ $i }}
                                 </label>
@@ -40,9 +40,27 @@
         </div>
         <div class="row">
             <div class="col">
-                <button type="submit" class="btn btn-md btn-primary w-100">Simpan Penilaian</button>
+                <button type="submit" class="btn btn-md btn-primary w-100" id="submitBtn" disabled>Simpan Penilaian</button>
             </div>
         </div>
     </div>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('penilaianForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const radioButtons = form.querySelectorAll('.score-radio');
+
+        form.addEventListener('change', function () {
+            let allChecked = true;
+            @foreach ($kriterias as $kriteria)
+                if (!form.querySelector('input[name="scores[{{ $kriteria->id }}]"]:checked')) {
+                    allChecked = false;
+                }
+            @endforeach
+            submitBtn.disabled = !allChecked;
+        });
+    });
+</script>
 @endsection

@@ -59,13 +59,28 @@
                   <a
                     class="nav-link active fs-5 fw-bold"
                     aria-current="page"
-                    href="/"
+                    href="/penilaian"
                     >Home</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link fs-5 fw-bold" href="/scorecard.html"
+                  <a class="nav-link fs-5 fw-bold" href="/penilaian/scorecard"
                     >Score Card</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fs-5 fw-bold" href="/penilaian/winners"
+                    >Leaderboard</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fs-5 fw-bold" href="/penilaian/informasi"
+                    >Informasi Penilaian</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fs-5 fw-bold" href="/logout"
+                    >Logout</a
                   >
                 </li>
               </ul>

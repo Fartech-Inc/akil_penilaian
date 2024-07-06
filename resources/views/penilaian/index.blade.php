@@ -17,7 +17,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card p-1 h-100">
                 <div class="card-body" style="background-color: #95d2b3">
-                    <p>Team {{ $index + 1 }}</p>
+                    {{-- <p>Team {{ $index + 1 }}</p> --}}
                     <h5 class="card-title">
                         {{ $team->name }}
                     </h5>
