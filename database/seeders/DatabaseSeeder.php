@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'juri',
             'email' => 'juri@gmail.com',
-            'password' => Hash::make('Penilaian001!'),
+            'password' => Hash::make('Juri001!'),
         ]);
         $this->call([
             JuriSeeder::class,
