@@ -1,0 +1,41 @@
+.teams .col {
+  margin-top: 20px;
+}
+
+.teams .col .card {
+  border-radius: 20px;
+  border: 3px solid #dfdfdf;
+  height: 300px;
+}
+
+.teams .col .card .card-body {
+  border-radius: 16px;
+}
+
+.btn {
+  border-radius: 16px;
+}
+
+.penilaian .col {
+  margin-top: 20px;
+}
+
+.penilaian .col .card {
+  border-radius: 20px;
+  border-radius: 20px;
+}
+
+.akumulasi .card {
+  border-radius: 20px;
+  border-radius: 20px;
+}
+
+.akumulasi .card .card-text {
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,29 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Penilaian untuk {{ $team->name }} oleh {{ $juri->nama }}</h1>
+@extends('layouts.app')
+
+@section('content')
+<section class="title">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-5">Penilaian untuk {{ $team->name }} oleh {{ $juri->nama }}</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
 <form action="{{ route('penilaian.store', [$team->id, $juri->id]) }}" method="POST">
     @csrf
-    @foreach ($kriterias as $kriteria)
-        <h3>{{ $kriteria->name }}</h3>
-        <div>
-            @for ($i = 1; $i <= 4; $i++)
-                <label for="score{{ $kriteria->id }}_{{ $i }}">
-                    <input type="radio" id="score{{ $kriteria->id }}_{{ $i }}" name="score[{{ $kriteria->id }}]" value="{{ $i }}"> {{ $i }}
-                </label>
-            @endfor
+    <div class="container">
+        <div class="row">
+            @foreach ($kriterias as $kriteria)
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/67/04/69/670469b3a849a02dc43190c497979ac5.jpg" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ $kriteria->name }}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @for ($i = 1; $i <= 4; $i++)
+                        <li class="list-group-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="score[{{ $kriteria->id }}]" id="score{{ $kriteria->id }}_{{ $i }}" value="{{ $i }}" />
+                                <label class="form-check-label" for="score{{ $kriteria->id }}_{{ $i }}">
+                                    {{ $i }}
+                                </label>
+                            </div>
+                        </li>
+                        @endfor
+                    </ul>
+                </div>
+            </div>
+            @endforeach
         </div>
-    @endforeach
-    <br>
-    <button type="submit">Simpan Penilaian</button>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-md btn-primary w-100">Simpan Penilaian</button>
+            </div>
+        </div>
+    </div>
 </form>
-
-
-</body>
-</html>
+@endsection
