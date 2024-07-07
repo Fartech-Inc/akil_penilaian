@@ -10,4 +10,9 @@ class Juri extends Model
     use HasFactory;
 
     protected $fillable = ["nama"];
+
+    public function penilaians()
+    {
+        return $this->hasMany(Penilaian::class);
+    }
 }

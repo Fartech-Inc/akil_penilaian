@@ -25,3 +25,5 @@ Route::get('/penilaian/scorecard', [PenilaianController::class, 'scorecard'])->n
 Route::get('/penilaian/informasi', function (){
     return view('penilaian.informasi');
 });
+
+Route::get('/penilaian/result/{team}', [PenilaianController::class, 'result'])->name('penilaian.result');

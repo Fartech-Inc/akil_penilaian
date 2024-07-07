@@ -28,6 +28,9 @@ class TeamResource extends Resource
                 TextInput::make('name')
                 ->required()
                 ->label('Nama Tim'),
+                TextInput::make('total_score')
+                ->integer()
+                ->label('Total Score'),
             ]);
     }
 

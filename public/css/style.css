@@ -39,3 +39,24 @@
 a {
   text-decoration: none;
 }
+
+.scorecard {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 20px;
+}
+.score {
+  font-weight: bold;
+  font-size: 24px;
+}
+.jury-info {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  margin-top: 20px;
+}
+.total-score {
+  font-size: 24px;
+  font-weight: bold;
+}
