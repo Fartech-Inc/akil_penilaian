@@ -82,60 +82,60 @@ class PenilaianController extends Controller
     //     return redirect()->route('penilaian.index')->with('success', 'Penilaian berhasil disimpan');
     // }
 
-    // public function store(Request $request, Team $team, Juri $juri)
-    // {
-    //     $kriterias = Kriteria::all();
-
-    //     foreach ($kriterias as $kriteria) {
-    //         if ($request->has("scores.{$kriteria->id}")) {
-    //             $score = $request->input("scores.{$kriteria->id}");
-
-    //             // Perbarui atau buat penilaian baru
-    //             Penilaian::updateOrCreate(
-    //                 [
-    //                     'juri_id' => $juri->id,
-    //                     'team_id' => $team->id,
-    //                     'kriteria_id' => $kriteria->id,
-    //                 ],
-    //                 [
-    //                     'score' => $score,
-    //                 ]
-    //             );
-    //         }
-    //     }
-
-    //     // Hitung total skor untuk team
-    //     $total_score = Penilaian::where('team_id', $team->id)->sum('score');
-    //     $team->update(['total_score' => $total_score]);
-
-    //     return redirect()->route('penilaian.index')->with('success', 'Penilaian berhasil disimpan.');
-    // }
-
     public function store(Request $request, Team $team, Juri $juri)
-{
-    // Validasi input
-    $request->validate([
-        'score' => 'required|array',
-        'score.*' => 'required|integer|min:1|max:4',
-    ]);
+    {
+        $kriterias = Kriteria::all();
 
-    foreach ($request->score as $kriteria_id => $score) {
-        Penilaian::create([
-            'juri_id' => $juri->id,
-            'team_id' => $team->id,
-            'kriteria_id' => $kriteria_id,
-            'score' => $score,
-        ]);
+        foreach ($kriterias as $kriteria) {
+            if ($request->has("scores.{$kriteria->id}")) {
+                $score = $request->input("scores.{$kriteria->id}");
+
+                // Perbarui atau buat penilaian baru
+                Penilaian::updateOrCreate(
+                    [
+                        'juri_id' => $juri->id,
+                        'team_id' => $team->id,
+                        'kriteria_id' => $kriteria->id,
+                    ],
+                    [
+                        'score' => $score,
+                    ]
+                );
+            }
+        }
+
+        // Hitung total skor untuk team
+        $total_score = Penilaian::where('team_id', $team->id)->sum('score');
+        $team->update(['total_score' => $total_score]);
+
+        return redirect()->route('penilaian.index')->with('success', 'Penilaian berhasil disimpan.');
     }
 
-    // Hitung total score untuk tim ini dari semua juri
-    $totalScore = Penilaian::where('team_id', $team->id)->sum('score');
+//     public function store(Request $request, Team $team, Juri $juri)
+// {
+//     // Validasi input
+//     $request->validate([
+//         'score' => 'required|array',
+//         'score.*' => 'required|integer|min:1|max:4',
+//     ]);
 
-    // Update total_score pada tabel teams
-    $team->update(['total_score' => $totalScore]);
+//     foreach ($request->score as $kriteria_id => $score) {
+//         Penilaian::create([
+//             'juri_id' => $juri->id,
+//             'team_id' => $team->id,
+//             'kriteria_id' => $kriteria_id,
+//             'score' => $score,
+//         ]);
+//     }
 
-    return redirect()->route('penilaian.result', ['team' => $team->id]);
-}
+//     // Hitung total score untuk tim ini dari semua juri
+//     $totalScore = Penilaian::where('team_id', $team->id)->sum('score');
+
+//     // Update total_score pada tabel teams
+//     $team->update(['total_score' => $totalScore]);
+
+//     return redirect()->route('penilaian.result', ['team' => $team->id]);
+// }
 
 
 
