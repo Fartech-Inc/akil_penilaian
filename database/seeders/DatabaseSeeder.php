@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class,
             TeamSeeder::class,
             KriteriaSeeder::class,
+            KomponenSeeder::class,
         ]);
     }
 }
