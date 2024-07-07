@@ -26,4 +26,5 @@ Route::get('/penilaian/informasi', function (){
     return view('penilaian.informasi');
 });
 
-Route::get('/penilaian/result/{team}', [PenilaianController::class, 'result'])->name('penilaian.result');
+// Route::get('/penilaian/result/{team}/{juri}', [PenilaianController::class, 'result'])->name('penilaian.result');
+Route::get('/penilaian/result/{juri}', [PenilaianController::class, 'result'])->name('penilaian.result');
