@@ -33,7 +33,7 @@ class PenilaianResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('team.name')->label('Nama Tim'),
-                TextColumn::make('juri.name')->label('Nama Juri'),
+                TextColumn::make('user.name')->label('Nama Juri'),
                 TextColumn::make('kriteria.name')->label('Nama Kriteria'),
                 TextColumn::make('score')->label('Score'),
             ])

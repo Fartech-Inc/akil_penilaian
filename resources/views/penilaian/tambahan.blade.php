@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -57,27 +58,28 @@
           <div class="row">
             <div class="col">
               <ul class="nav justify-content-center">
+
                 <li class="nav-item">
-                  <a
-                    class="nav-link active fs-5 fw-bold"
-                    aria-current="page"
-                    href="/penilaian"
-                    >Home</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link fs-5 fw-bold" href="/logout"
-                    >Logout</a
-                  >
-                </li>
+                    <a class="nav-link fs-5 fw-bold" href="/penilaian/scorecard"
+                      >Score Card</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link fs-5 fw-bold" href="/penilaian/winners"
+                      >Leaderboard</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link fs-5 fw-bold" href="/penilaian/informasi"
+                      >Informasi Penilaian</a
+                    >
+                  </li>
+
               </ul>
             </div>
           </div>
         </div>
       </section>
-    <main id="main" class="main">
-        @yield('content')
-    </main>
     {{-- @include('layouts.footer') --}}
 
 

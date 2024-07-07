@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_tambahan')
 
 @section('content')
 <section class="title">
@@ -18,8 +18,8 @@
                 <label for="user_id" class="form-label">Pilih Juri:</label>
                 <select name="user_id" id="user_id" class="form-select">
                     <option value="">Semua Juri</option>
-                    @foreach ($juris as $juri)
-                        <option value="{{ $juri->id }}" {{ request('user_id') == $juri->id ? 'selected' : '' }}>{{ $juri->nama }}</option>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}" {{ request('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -53,7 +53,7 @@
             <tbody>
                 @foreach ($penilaians as $penilaian)
                     <tr>
-                        <td>{{ $penilaian->juri->nama }}</td>
+                        <td>{{ $penilaian->user->name }}</td>
                         <td>{{ $penilaian->team->name }}</td>
                         <td>{{ $penilaian->kriteria->name }}</td>
                         <td>{{ $penilaian->score }}</td>

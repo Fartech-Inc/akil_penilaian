@@ -33,10 +33,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/penilaian/create/{team}', [PenilaianController::class, 'create'])->name('penilaian.create');
     Route::post('/penilaian/{team}', [PenilaianController::class, 'store'])->name('penilaian.store');
     Route::get('/penilaian/result/{team}', [PenilaianController::class, 'result'])->name('penilaian.result');
+    
+});
 
-    Route::get('/penilaian/winners', [PenilaianController::class, 'winners'])->name('penilaian.winners');
-    Route::get('/penilaian/scorecard', [PenilaianController::class, 'scorecard'])->name('penilaian.scorecard');
-    Route::get('/penilaian/informasi', function (){
-        return view('penilaian.informasi');
-    });
+Route::get('/penilaian/winners', [PenilaianController::class, 'winners'])->name('penilaian.winners');
+Route::get('/penilaian/scorecard', [PenilaianController::class, 'scorecard'])->name('penilaian.scorecard');
+Route::get('/penilaian/informasi', function (){
+    return view('penilaian.informasi');
+});
+
+Route::get('/penilaian/tambahan', function () {
+    return view('penilaian.tambahan');
 });

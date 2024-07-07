@@ -105,7 +105,7 @@ class PenilaianController extends Controller
 
     public function scorecard(Request $request)
     {
-        $juris = User::all();
+        $users = User::all();
         $teams = Team::all();
 
         $query = Penilaian::query();
@@ -118,14 +118,15 @@ class PenilaianController extends Controller
             $query->where('team_id', $request->team_id);
         }
 
-        $penilaians = $query->with('juri', 'team', 'kriteria')->get();
+        $penilaians = $query->with('user', 'team', 'kriteria')->get();
 
-        return view('penilaian.scorecard', compact('juris', 'teams', 'penilaians'));
+        return view('penilaian.scorecard', compact('users', 'teams', 'penilaians'));
     }
 
     public function result(Team $team)
     {
         $user = Auth::user();
+        // dd($user);
 
         // Ambil semua penilaian yang dilakukan oleh user ini untuk tim ini
         $penilaians = Penilaian::where('team_id', $team->id)
