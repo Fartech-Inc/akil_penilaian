@@ -28,6 +28,9 @@ class TeamResource extends Resource
                 TextInput::make('name')
                 ->required()
                 ->label('Nama Tim'),
+                TextInput::make('category')
+                ->required()
+                ->label('Kategori'),
                 TextInput::make('total_score')
                 ->integer()
                 ->label('Total Score'),
@@ -39,6 +42,7 @@ class TeamResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->label('Nama Tim')->sortable(),
+                TextColumn::make('category')->label('Kategori')->sortable(),
                 TextColumn::make('total_score')->label('Total Score')->sortable(),
             ])
             ->filters([

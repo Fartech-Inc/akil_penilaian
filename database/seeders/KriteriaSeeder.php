@@ -14,11 +14,11 @@ class KriteriaSeeder extends Seeder
     public function run(): void
     {
         $kriterias = [
-            ['name' => 'Kriteria 1'],
-            ['name' => 'Kriteria 2'],
-            ['name' => 'Kriteria 3'],
-            ['name' => 'Kriteria 4'],
-            ['name' => 'Kriteria 5'],
+            ['name' => 'Impact'],
+            ['name' => 'Use Case'],
+            ['name' => 'Technology Platforms'],
+            ['name' => 'Organization/enablers'],
+            ['name' => 'X-Factor'],
         ];
 
         foreach ($kriterias as $kriteria) {

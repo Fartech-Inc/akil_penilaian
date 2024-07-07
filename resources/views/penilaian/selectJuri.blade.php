@@ -15,11 +15,11 @@
       <div class="row">
         <div class="col">
           <form
-            action="{{ route('penilaian.create', [$team->id, 'juri' => 'juri_id']) }}"
+            action="{{ route('penilaian.create', [$team->id, 'juri' => 'user_id']) }}"
             method="GET"
             class="d-flex justify-content-between align-items-center"
           >
-            <select class="form-select" aria-label="Default select example" name="juri_id" id="juri_id">
+            <select class="form-select" aria-label="Default select example" name="user_id" id="user_id">
                 <option selected>-- Pilih Juri --</option>
                 @foreach ($juris as $juri)
                     <option value="{{ $juri->id }}">{{ $juri->nama }}</option>

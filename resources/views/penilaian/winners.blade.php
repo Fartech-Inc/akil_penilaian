@@ -1,35 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="title">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1 class="text-center mt-5">Daftar Pemenang</h1>
-            </div>
-        </div>
-    </div>
-</section>
-<br>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="text-center">Peringkat Tim</h3>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        @foreach ($teams as $team)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>{{ $team->name }}</span>
-                                <span class="badge bg-success">{{ $team->total_score }}</span>
-                            </li>
+    <h1 class="my-4">Leaderboard</h1>
+
+    @foreach ($categories as $category)
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4>{{ strtoupper($category) }}</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Tim</th>
+                            <th>Total Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($teams[$category] as $team)
+                            <tr>
+                                <td>{{ $team->name }}</td>
+                                <td>{{ $team->total_score }}</td>
+                            </tr>
                         @endforeach
-                    </ul>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
+    @endforeach
 </div>
 @endsection

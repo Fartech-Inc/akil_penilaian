@@ -10,9 +10,14 @@
                 </div>
                 <div class="card-body">
                     <h3 class="text-center">Tim: {{ $team->name }}</h3>
-                    <h4 class="text-center">Oleh Juri: {{ $juri->nama }}</h4>
+                    <h4 class="text-center">Oleh Juri: {{ $user->name }}</h4>
 
-                    <div class="table-responsive my-4">
+                    <!-- Total Score with blue box -->
+                    <div class="total-score-box text-center my-4">
+                        <h2>Total Score: {{ $totalScore }}</h2>
+                    </div>
+                    
+                    {{-- <div class="table-responsive my-4">
                         <table class="table table-bordered table-striped">
                             <thead class="table-dark">
                                 <tr>
@@ -25,7 +30,7 @@
                             <tbody>
                                 @foreach ($penilaians as $penilaian)
                                     <tr>
-                                        <td>{{ $penilaian->juri->nama }}</td>
+                                        <td>{{ $penilaian->user->name }}</td>
                                         <td>{{ $penilaian->team->name }}</td>
                                         <td>{{ $penilaian->kriteria->name }}</td>
                                         <td>{{ $penilaian->score }}</td>
@@ -33,10 +38,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
+                    </div> --}}
 
-                    <h4 class="text-center my-4">Total Score: {{ $totalScore }}</h4>
-                    
                     <div class="text-center">
                         <a href="{{ route('penilaian.index') }}" class="btn btn-primary">Kembali ke Beranda</a>
                     </div>
@@ -45,4 +48,19 @@
         </div>
     </div>
 </div>
+
+<style>
+.total-score-box {
+    border: 2px solid #007bff;
+    background-color: #cce5ff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.total-score-box h2 {
+    color: #007bff;
+    font-size: 2.5rem;
+    margin: 0;
+}
+</style>
 @endsection

@@ -22,7 +22,7 @@
                         {{ $team->name }}
                     </h5>
                 </div>
-                <a href="{{ route('penilaian.selectJuri', $team->id) }}" class="card-link btn btn-md w-100 btn-dark mt-3">
+                <a href="{{ route('penilaian.create', $team->id) }}" class="card-link btn btn-md w-100 btn-dark mt-3">
                     Beri Nilai
                 </a>
             </div>

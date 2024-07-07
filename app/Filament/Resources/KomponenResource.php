@@ -2,11 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KriteriaResource\Pages;
-use App\Filament\Resources\KriteriaResource\RelationManagers;
-use App\Models\Kriteria;
+use App\Filament\Resources\KomponenResource\Pages;
+use App\Filament\Resources\KomponenResource\RelationManagers;
+use App\Models\Komponen;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,9 +18,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class KriteriaResource extends Resource
+class KomponenResource extends Resource
 {
-    protected static ?string $model = Kriteria::class;
+    protected static ?string $model = Komponen::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,17 +28,16 @@ class KriteriaResource extends Resource
     {
         return $form
             ->schema([
+                Select::make('kriteria_id')
+                ->relationship('kriteria', 'name')
+                ->required()
+                ->label('Kriteria'),
                 TextInput::make('name')
-                ->required()
-                ->label('Nama Kriteria'),
-                TextInput::make('desc')
-                ->required()
-                ->label('Deskripsi'),
-                FileUpload::make('image')
-                ->label('Icon')
-                ->disk('public')
-                ->directory('kriteria_icon')
+                ->label('Nama')
                 ->required(),
+                TextInput::make('score')
+                ->numeric(),
+                
             ]);
     }
 
@@ -45,10 +45,12 @@ class KriteriaResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Nama Kriteria')->sortable(),
-                TextColumn::make('desc')->label('Deskripsi')->sortable(),
-                ImageColumn::make('image')
-                ->label('Icon'),
+                TextColumn::make('kriteria.name')->label('kriteria')->sortable(),
+                TextColumn::make('name')
+                ->label('Nama'),
+                TextColumn::make('score')
+                ->label('Score')
+                
             ])
             ->filters([
                 //
@@ -73,9 +75,9 @@ class KriteriaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListKriterias::route('/'),
-            'create' => Pages\CreateKriteria::route('/create'),
-            'edit' => Pages\EditKriteria::route('/{record}/edit'),
+            'index' => Pages\ListKomponens::route('/'),
+            'create' => Pages\CreateKomponen::route('/create'),
+            'edit' => Pages\EditKomponen::route('/{record}/edit'),
         ];
     }
 }

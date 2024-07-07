@@ -9,7 +9,7 @@ class Team extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'total_score'];
+    protected $fillable = ['name', 'total_score', 'category'];
 
     public function penilaians()
     {

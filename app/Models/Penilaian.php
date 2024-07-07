@@ -10,15 +10,15 @@ class Penilaian extends Model
     use HasFactory;
 
     protected $fillable = [
-        'juri_id',
+        'user_id',
         'team_id',
         'kriteria_id',
         'score',
     ];
 
-    public function juri()
+    public function user()
     {
-        return $this->belongsTo(Juri::class);
+        return $this->belongsTo(User::class);
     }
 
     public function team()

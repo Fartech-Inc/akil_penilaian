@@ -15,11 +15,11 @@
     <form action="{{ route('penilaian.scorecard') }}" method="GET" class="mb-4">
         <div class="row">
             <div class="col-md-6">
-                <label for="juri_id" class="form-label">Pilih Juri:</label>
-                <select name="juri_id" id="juri_id" class="form-select">
+                <label for="user_id" class="form-label">Pilih Juri:</label>
+                <select name="user_id" id="user_id" class="form-select">
                     <option value="">Semua Juri</option>
                     @foreach ($juris as $juri)
-                        <option value="{{ $juri->id }}" {{ request('juri_id') == $juri->id ? 'selected' : '' }}>{{ $juri->nama }}</option>
+                        <option value="{{ $juri->id }}" {{ request('user_id') == $juri->id ? 'selected' : '' }}>{{ $juri->nama }}</option>
                     @endforeach
                 </select>
             </div>

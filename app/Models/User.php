@@ -52,4 +52,9 @@ class User extends Authenticatable implements FilamentUser
             'password' => 'hashed',
         ];
     }
+
+    public function penilaians()
+    {
+        return $this->hasMany(Penilaian::class);
+    }
 }

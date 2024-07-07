@@ -3,19 +3,17 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         $juries = [
             ['name' => 'Juri 1 Alberto', 'email' => 'juri1@gmail.com', 'password' => 'Juri001!'],
             ['name' => 'Juri 2 Marcopolo', 'email' => 'juri2@gmail.com', 'password' => 'Juri002!'],
@@ -31,11 +29,5 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make($jury['password']),
             ]);
         }
-
-        $this->call([
-            // UserSeeder::class,
-            TeamSeeder::class,
-            KriteriaSeeder::class,
-        ]);
     }
 }
